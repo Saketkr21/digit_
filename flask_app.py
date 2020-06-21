@@ -7,16 +7,16 @@ from tensorflow import keras
 from tensorflow.keras.models import model_from_json
 import re
 import base64
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-json_file = open('/home/steve/Desktop/digit/flask_api/model.json','r')
+json_file = open('model.json','r')
 model_json = json_file.read()
 json_file.close()
 model = model_from_json(model_json)
 
-model.load_weights("/home/steve/Desktop/digit/flask_api/weights.h5")
+model.load_weights("weights.h5")
 model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-graph = tf.Graph()
+# graph = tf.Graph()
 
 def prediction(path):
     x = cv2.imread(path,0)
@@ -54,7 +54,7 @@ def saket():
 
 @app.route('/p')
 def ans():
-    path = '/home/steve/Desktop/digit/flask_api/output.png'
+    path = 'output.png'
     ans = prediction(path)
     return render_template('p.html', title=ans)
 
